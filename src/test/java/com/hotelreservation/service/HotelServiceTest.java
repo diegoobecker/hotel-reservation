@@ -2,6 +2,7 @@ package com.hotelreservation.service;
 
 import com.hotelreservation.model.Hotel;
 import com.hotelreservation.repository.HotelRepository;
+import com.hotelreservation.service.exception.HotelNotFoundException;
 import com.hotelreservation.service.exception.UniquenessCnpjException;
 import com.hotelreservation.service.impl.HotelServiceImpl;
 import org.assertj.core.api.Assertions;
@@ -51,6 +52,11 @@ public class HotelServiceTest {
         when(hotelRepository.findByCnpj(CNPJ)).thenReturn(Optional.of(hotel));
 
         hotelService.save(hotel);
+    }
+
+    @Test(expected = HotelNotFoundException.class)
+    public void shouldReturnExceptionWhenNotExistsHotelByCnpj() throws Exception {
+        hotelService.findByCnpj(CNPJ);
     }
 
     @Test

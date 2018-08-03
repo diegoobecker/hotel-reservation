@@ -3,6 +3,7 @@ package com.hotelreservation.service.impl;
 import com.hotelreservation.model.Hotel;
 import com.hotelreservation.repository.HotelRepository;
 import com.hotelreservation.service.HotelService;
+import com.hotelreservation.service.exception.HotelNotFoundException;
 import com.hotelreservation.service.exception.UniquenessCnpjException;
 
 import java.util.Optional;
@@ -27,7 +28,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Hotel findByCnpj(String cnpj) {
-        return hotelRepository.findByCnpj(cnpj).get();
+    public Hotel findByCnpj(String cnpj) throws HotelNotFoundException {
+        Optional<Hotel> optional = hotelRepository.findByCnpj(cnpj);
+        return optional.orElseThrow(() -> new HotelNotFoundException());
     }
 }
