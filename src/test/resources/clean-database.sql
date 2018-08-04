@@ -1,0 +1,3 @@
+DELETE FROM hotel;
+
+ALTER SEQUENCE hotel_id_seq RESTART WITH 1;
