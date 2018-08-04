@@ -19,19 +19,22 @@ import java.util.Optional;
 @TestPropertySource("classpath:application-test.properties")
 public class HotelRepositoryTest {
 
+    private static final String CNPJ_VALIDO = "30965242000180";
+    private static final String CNPJ_INVALIDO = "23432452000132";
+
     @Autowired
     HotelRepository hotelRepository;
 
     @Test
     public void shouldLookForHotelByCnpj() throws Exception {
-        Optional<Hotel> optional = hotelRepository.findByCnpj("30965242000180");
+        Optional<Hotel> optional = hotelRepository.findByCnpj(CNPJ_VALIDO);
 
         Assertions.assertThat(optional.isPresent()).isTrue();
     }
 
     @Test
     public void shouldNotLookForHotelByNonexistentCnpj() throws Exception {
-        Optional<Hotel> optional = hotelRepository.findByCnpj("23432452000132");
+        Optional<Hotel> optional = hotelRepository.findByCnpj(CNPJ_INVALIDO);
 
         Assertions.assertThat(optional.isPresent()).isFalse();
     }
