@@ -7,7 +7,9 @@ import com.hotelreservation.service.exception.UniquenessCnpjException;
 import com.hotelreservation.service.impl.HotelServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,9 +23,12 @@ import static org.mockito.Mockito.*;
 public class HotelServiceTest {
 
     private static final String TITLE = "Bela Vista Porto Alegre";
-    private static final String CNPJ = "01.745.475/0001-70";
+    private static final String CNPJ = "01745475/000170";
     @MockBean
     private HotelRepository hotelRepository;
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     private HotelService hotelService;
 
@@ -56,6 +61,14 @@ public class HotelServiceTest {
 
     @Test(expected = HotelNotFoundException.class)
     public void shouldReturnExceptionWhenNotExistsHotelByCnpj() throws Exception {
+        hotelService.findByCnpj(CNPJ);
+    }
+
+    @Test
+    public void shouldReturnHotelDataInNotFoundException() throws Exception {
+        expectedException.expect(HotelNotFoundException.class);
+        expectedException.expectMessage("Não existe hotel para o CNPJ " + CNPJ);
+
         hotelService.findByCnpj(CNPJ);
     }
 
