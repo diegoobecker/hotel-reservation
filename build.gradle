@@ -33,5 +33,6 @@ dependencies {
 	runtime('org.hsqldb:hsqldb')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+    
 	testCompile('io.rest-assured:rest-assured:3.1.0')
 }

@@ -11,9 +11,10 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
+    private String cnpj;
     private String title;
     private String address;
-    private String cnpj;
+
 
     public Long getCode() {
         return code;
