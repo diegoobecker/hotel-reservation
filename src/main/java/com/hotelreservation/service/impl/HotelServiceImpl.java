@@ -7,6 +7,8 @@ import com.hotelreservation.service.exception.HotelNotFoundException;
 import com.hotelreservation.service.exception.UniquenessCnpjException;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -34,5 +36,13 @@ public class HotelServiceImpl implements HotelService {
     public Hotel findByCnpj(String cnpj) throws HotelNotFoundException {
         Optional<Hotel> optional = hotelRepository.findByCnpj(cnpj);
         return optional.orElseThrow(() -> new HotelNotFoundException("Não existe hotel para o CNPJ " + cnpj));
+    }
+
+    @Override
+    public List<Hotel> getAllHotels() throws HotelNotFoundException {
+        if(hotelRepository.findAll().isEmpty()) {
+            throw new HotelNotFoundException("Não existem hoteis para listar");
+        }
+        return hotelRepository.findAll();
     }
 }
