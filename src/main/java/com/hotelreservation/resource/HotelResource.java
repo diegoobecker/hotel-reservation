@@ -3,6 +3,7 @@ package com.hotelreservation.resource;
 import com.hotelreservation.model.Hotel;
 import com.hotelreservation.service.HotelService;
 import com.hotelreservation.service.exception.HotelNotFoundException;
+import com.hotelreservation.service.exception.UniquenessCnpjException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,11 @@ public class HotelResource {
         return new ResponseEntity<>(new Error(e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(UniquenessCnpjException.class)
+    public ResponseEntity<Error> handleUniquenessCnpjException(UniquenessCnpjException e) {
+        return new ResponseEntity<>(new Error(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
     class Error {
         private String error;
 
@@ -48,5 +54,12 @@ public class HotelResource {
         List<Hotel> hotelList = hotelService.getAllHotels();
 
         return new ResponseEntity<>(hotelList, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Hotel> saveHotel(@RequestBody Hotel hotel) throws UniquenessCnpjException {
+        final Hotel newHotel = hotelService.save(hotel);
+
+        return new ResponseEntity<>(newHotel, HttpStatus.CREATED);
     }
 }

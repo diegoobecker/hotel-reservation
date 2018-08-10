@@ -26,7 +26,7 @@ public class HotelServiceImpl implements HotelService {
         Optional<Hotel> optional = hotelRepository.findByCnpj(hotel.getCnpj());
 
         if(optional.isPresent()) {
-            throw new UniquenessCnpjException();
+            throw new UniquenessCnpjException("Já existe hotel cadastrado com o CNPJ informado");
         }
 
         return hotelRepository.save(hotel);

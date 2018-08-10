@@ -1,7 +1,9 @@
 package com.hotelreservation.resources;
 
 import com.hotelreservation.HotelReservationApplicationTests;
+import com.hotelreservation.model.Hotel;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.mockito.hamcrest.MockitoHamcrest;
@@ -49,14 +51,49 @@ public class HotelResourceTest extends HotelReservationApplicationTests {
                         "cnpj[3]", equalTo("61586557000140"));
     }
 
-//    @Test
-//    public void shouldReturnHotelNotFoundExceptionWhenHotelListIsEmpty() throws Exception {
-//        given()
-//        .get("/hotels")
-//        .then()
-//                .log().body().and()
-//                .statusCode(HttpStatus.NOT_FOUND.value());
-//    }
 
+    @Test
+    public void shoudSaveNewHotel() throws Exception {
+        Hotel hotel = new Hotel();
+        hotel.setTitle("Santa Isabel");
+        hotel.setCnpj("07628471000198");
+        hotel.setAddress("Viamão");
 
+        given()
+                .request()
+                .header("Accept", ContentType.ANY)
+                .header("Content-type", ContentType.JSON)
+                .body(hotel)
+        .when()
+        .post("/hotels")
+        .then()
+                .log().headers().and()
+                .log().body().and()
+                .statusCode(HttpStatus.CREATED.value())
+                .body("title", equalTo("Santa Isabel"),
+                        "cnpj", equalTo("07628471000198"),
+                        "address", equalTo("Viamão"));
+
+    }
+
+    @Test
+    public void shouldUniquenessCnpjExceptionWhenSaveHotelWithCpnjExisting() throws Exception {
+        Hotel hotel = new Hotel();
+        hotel.setTitle("Santa Isabel");
+        hotel.setCnpj("30965242000180");
+        hotel.setAddress("Viamão");
+
+        given()
+                .request()
+                .header("Accept", ContentType.ANY)
+                .header("Content-type", ContentType.JSON)
+                .body(hotel)
+        .when()
+        .post("/hotels")
+        .then()
+                .log().headers().and()
+                .log().body().and()
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .body("error", equalTo("Já existe hotel cadastrado com o CNPJ informado"));
+    }
 }
