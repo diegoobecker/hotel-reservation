@@ -45,6 +45,7 @@ public class HotelServiceTest {
         hotelService = new HotelServiceImpl(hotelRepository);
 
         hotel = new Hotel();
+        hotel.setCode(3L);
         hotel.setTitle(TITLE);
         hotel.setCnpj(CNPJ);
 
@@ -110,5 +111,12 @@ public class HotelServiceTest {
 
         Assertions.assertThat(hotelList).isNotNull();
         Assertions.assertThat(hotelList.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void shouldDeleteHotel() throws Exception {
+        hotelService.delete(hotel.getCode());
+
+        verify(hotelRepository).deleteById(hotel.getCode());
     }
 }

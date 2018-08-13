@@ -13,4 +13,6 @@ public interface HotelService {
     Hotel findByCnpj(String cnpj) throws HotelNotFoundException;
 
     List<Hotel> getAllHotels() throws HotelNotFoundException;
+
+    void delete(Long code) throws HotelNotFoundException;
 }

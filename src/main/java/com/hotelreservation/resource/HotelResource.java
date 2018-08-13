@@ -62,4 +62,12 @@ public class HotelResource {
 
         return new ResponseEntity<>(newHotel, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity<Hotel> deleteHotel(@PathVariable("code") Long code) throws HotelNotFoundException {
+
+        hotelService.delete(code);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

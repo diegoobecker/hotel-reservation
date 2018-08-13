@@ -10,6 +10,7 @@ import org.mockito.hamcrest.MockitoHamcrest;
 import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -95,5 +96,28 @@ public class HotelResourceTest extends HotelReservationApplicationTests {
                 .log().body().and()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .body("error", equalTo("Já existe hotel cadastrado com o CNPJ informado"));
+    }
+
+    @Test
+    public void shouldDeleteHotel() throws Exception {
+        given()
+                .pathParam("code", 3L)
+        .when()
+        .delete("/hotels/{code}")
+        .then()
+                .log().headers().and()
+                .statusCode(HttpStatus.OK.value());
+    }
+
+    @Test
+    public void shouldReturnNotFoundHotelWhenCodeIsNotExists() throws Exception {
+        given()
+                .pathParam("code", 7L)
+        .when()
+        .delete("/hotels/{code}")
+        .then()
+                .log().headers().and()
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .body("error", equalTo("Hotel não encontrado"));
     }
 }

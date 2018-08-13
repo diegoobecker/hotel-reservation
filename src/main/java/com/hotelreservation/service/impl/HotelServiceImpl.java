@@ -45,4 +45,13 @@ public class HotelServiceImpl implements HotelService {
         }
         return hotelRepository.findAll();
     }
+
+    @Override
+    public void delete(Long code) throws HotelNotFoundException {
+        if(!hotelRepository.findById(code).isPresent()) {
+            throw new HotelNotFoundException("Hotel não encontrado");
+        }
+
+        hotelRepository.deleteById(code);
+    }
 }
