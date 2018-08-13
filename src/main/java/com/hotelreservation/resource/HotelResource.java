@@ -26,6 +26,35 @@ public class HotelResource {
         return new ResponseEntity<>(hotel, HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Hotel>> getAllHotels() throws HotelNotFoundException {
+
+        List<Hotel> hotelList = hotelService.getAllHotels();
+
+        return new ResponseEntity<>(hotelList, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Hotel> saveHotel(@RequestBody Hotel hotel) throws UniquenessCnpjException {
+        final Hotel newHotel = hotelService.save(hotel);
+
+        return new ResponseEntity<>(newHotel, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity<Hotel> deleteHotel(@PathVariable("code") Long code) throws HotelNotFoundException {
+        hotelService.delete(code);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Hotel> updateHotel(@RequestBody Hotel hotel) {
+        final Hotel hotelChanged = hotelService.update(hotel);
+
+        return new ResponseEntity<>(hotelChanged, HttpStatus.OK);
+    }
+
     @ExceptionHandler(HotelNotFoundException.class)
     public ResponseEntity<Error> handleHotelNotFoundException(HotelNotFoundException e) {
         return new ResponseEntity<>(new Error(e.getMessage()), HttpStatus.NOT_FOUND);
@@ -48,26 +77,4 @@ public class HotelResource {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<List<Hotel>> getAllHotels() throws HotelNotFoundException {
-
-        List<Hotel> hotelList = hotelService.getAllHotels();
-
-        return new ResponseEntity<>(hotelList, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<Hotel> saveHotel(@RequestBody Hotel hotel) throws UniquenessCnpjException {
-        final Hotel newHotel = hotelService.save(hotel);
-
-        return new ResponseEntity<>(newHotel, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{code}")
-    public ResponseEntity<Hotel> deleteHotel(@PathVariable("code") Long code) throws HotelNotFoundException {
-
-        hotelService.delete(code);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

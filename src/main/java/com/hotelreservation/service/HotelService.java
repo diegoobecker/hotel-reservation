@@ -15,4 +15,6 @@ public interface HotelService {
     List<Hotel> getAllHotels() throws HotelNotFoundException;
 
     void delete(Long code) throws HotelNotFoundException;
+
+    Hotel update(Hotel hotel);
 }

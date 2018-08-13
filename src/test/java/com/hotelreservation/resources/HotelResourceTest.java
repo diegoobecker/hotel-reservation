@@ -120,4 +120,25 @@ public class HotelResourceTest extends HotelReservationApplicationTests {
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("error", equalTo("Hotel não encontrado"));
     }
+
+    @Test
+    public void shouldUpdateHotel() throws Exception {
+        Hotel hotel = new Hotel();
+        hotel.setCode(4l);
+        hotel.setTitle("Bela Vista Alterado");
+        hotel.setCnpj("61586557000140");
+
+        given()
+                .request()
+                .header("Accept", ContentType.ANY)
+                .header("Content-type", ContentType.JSON)
+                .body(hotel)
+        .when()
+        .put("/hotels")
+        .then()
+                .log().headers().and()
+                .log().body().and()
+                .statusCode(HttpStatus.OK.value())
+                .body("title", equalTo("Bela Vista Alterado"));
+    }
 }

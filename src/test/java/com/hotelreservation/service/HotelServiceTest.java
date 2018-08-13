@@ -119,4 +119,11 @@ public class HotelServiceTest {
 
         verify(hotelRepository).deleteById(hotel.getCode());
     }
+
+    @Test
+    public void shouldUpdateHotel() throws Exception {
+        hotelService.update(hotel);
+
+        verify(hotelRepository).save(hotel);
+    }
 }

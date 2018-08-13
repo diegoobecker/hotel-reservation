@@ -54,4 +54,15 @@ public class HotelServiceImpl implements HotelService {
 
         hotelRepository.deleteById(code);
     }
+
+    @Override
+    public Hotel update(Hotel hotel) {
+//        Optional<Hotel> optional = hotelRepository.findByCnpj(hotel.getCnpj());
+//
+//        if(optional.isPresent()) {
+//            throw new UniquenessCnpjException("Já existe hotel cadastrado com o CNPJ informado");
+//        }
+
+        return hotelRepository.save(hotel);
+    }
 }
