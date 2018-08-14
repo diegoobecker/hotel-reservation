@@ -115,6 +115,8 @@ public class HotelServiceTest {
 
     @Test
     public void shouldDeleteHotel() throws Exception {
+        when(hotelRepository.findById(hotel.getCode())).thenReturn(Optional.of(hotel));
+
         hotelService.delete(hotel.getCode());
 
         verify(hotelRepository).deleteById(hotel.getCode());
