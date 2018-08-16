@@ -14,6 +14,7 @@ public class Hotel {
     private String cnpj;
     private String title;
     private String address;
+    private String description;
 
 
     public Long getCode() {
@@ -46,6 +47,14 @@ public class Hotel {
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
