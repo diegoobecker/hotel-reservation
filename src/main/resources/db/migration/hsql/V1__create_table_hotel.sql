@@ -4,5 +4,19 @@ CREATE TABLE hotel (
   title VARCHAR(255),
   address VARCHAR(255),
   cnpj VARCHAR(255),
-  description VARCHAR(255)
+  description VARCHAR(255),
+  priceNWK FLOAT,
+  priceNWE FLOAT,
+  priceAWK FLOAT,
+  priceAWE FLOAT,
+  rating INT,
+  blackoutI DATE,
+  blackoutE DATE
+--  priceNormalWeek INT
+--  priceNormalWeekend FLOAT,
+--  priceAwardWeek FLOAT,
+--  priceAwardWeekend FLOAT,
+--  rating INT,
+--  blackoutStart DATE,
+--  blackoutEnd DATE
 );
