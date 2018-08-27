@@ -17,6 +17,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 public class HotelResourceTest extends HotelReservationApplicationTests {
 
+
     @Test
     public void shouldFindHotelByCnpj() throws Exception {
         given()
