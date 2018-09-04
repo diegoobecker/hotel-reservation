@@ -42,7 +42,7 @@ public class HotelRepositoryTest {
     }
 
     @Test
-    public void deveFiltrarHotelPorParteDoTitulo() throws Exception {
+    public void shouldFilterHotelByTitle() throws Exception {
         HotelFilter filter = new HotelFilter();
         filter.setTitle("w");
 
@@ -52,7 +52,7 @@ public class HotelRepositoryTest {
     }
 
     @Test
-    public void deveFiltrarHotelPorParteDoCnpj() throws Exception {
+    public void shouldFilterHotelByCnpj() throws Exception {
         HotelFilter filter = new HotelFilter();
         filter.setCnpj("14");
 
