@@ -50,4 +50,14 @@ public class HotelRepositoryTest {
 
         Assertions.assertThat(hotels.size()).isEqualTo(1);
     }
+
+    @Test
+    public void deveFiltrarHotelPorParteDoCnpj() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setCnpj("14");
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(2);
+    }
 }
