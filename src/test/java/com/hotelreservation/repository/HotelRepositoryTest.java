@@ -62,7 +62,7 @@ public class HotelRepositoryTest {
     }
 
     @Test
-    public void deve_filtrar_pessoas_por_filtro_composto() throws Exception {
+    public void shouldFilterHotelByCnpjAndTitle() throws Exception {
         HotelFilter filter = new HotelFilter();
         filter.setTitle("w");
         filter.setCnpj("14");
@@ -73,7 +73,7 @@ public class HotelRepositoryTest {
     }
 
     @Test
-    public void deve_filtrar_por_classificacao() throws Exception {
+    public void shouldFilterHotelByRating() throws Exception {
         HotelFilter filter = new HotelFilter();
         filter.setRating(3);
 

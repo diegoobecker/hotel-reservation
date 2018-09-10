@@ -37,7 +37,7 @@ public class HotelRepositoryImpl implements HotelRepositoryQuery {
             params.put("cnpj", "%" + filter.getCnpj() + "%");
         }
 
-        if(StringUtils.hasText(Integer.toString(filter.getRating()))) {
+        if(filter.getRating() > 0) {
             sb.append(" AND bean.rating = :rating ");
             params.put("rating", filter.getRating());
         }
