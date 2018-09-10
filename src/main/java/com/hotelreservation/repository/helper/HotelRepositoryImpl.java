@@ -3,6 +3,7 @@ package com.hotelreservation.repository.helper;
 import com.hotelreservation.model.Hotel;
 import com.hotelreservation.repository.filter.HotelFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.util.NumberUtils;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -35,6 +36,12 @@ public class HotelRepositoryImpl implements HotelRepositoryQuery {
             sb.append(" AND bean.cnpj LIKE :cnpj ");
             params.put("cnpj", "%" + filter.getCnpj() + "%");
         }
+
+        if(StringUtils.hasText(Integer.toString(filter.getRating()))) {
+            sb.append(" AND bean.rating = :rating ");
+            params.put("rating", filter.getRating());
+        }
+
 
         Query query = manager.createQuery(sb.toString(), Hotel.class);
 

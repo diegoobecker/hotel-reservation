@@ -60,4 +60,25 @@ public class HotelRepositoryTest {
 
         Assertions.assertThat(hotels.size()).isEqualTo(2);
     }
+
+    @Test
+    public void deve_filtrar_pessoas_por_filtro_composto() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setTitle("w");
+        filter.setCnpj("14");
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void deve_filtrar_por_classificacao() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setRating(3);
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(2);
+    }
 }
