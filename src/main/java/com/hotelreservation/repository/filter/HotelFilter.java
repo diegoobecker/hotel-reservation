@@ -14,6 +14,15 @@ public class HotelFilter {
     private int rating;
     private Calendar blackoutI;
     private Calendar blackoutE;
+    private String clientType;
+
+    public String getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(String clienteType) {
+        this.clientType = clienteType;
+    }
 
     public Long getCode() {
         return code;

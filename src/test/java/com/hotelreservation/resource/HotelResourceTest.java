@@ -1,19 +1,15 @@
-package com.hotelreservation.resources;
+package com.hotelreservation.resource;
 
 import com.hotelreservation.HotelReservationApplicationTests;
 import com.hotelreservation.model.Hotel;
-import io.restassured.RestAssured;
+import com.hotelreservation.repository.filter.HotelFilter;
 import io.restassured.http.ContentType;
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
-import org.mockito.hamcrest.MockitoHamcrest;
 import org.springframework.http.HttpStatus;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 
 public class HotelResourceTest extends HotelReservationApplicationTests {
 
@@ -141,5 +137,26 @@ public class HotelResourceTest extends HotelReservationApplicationTests {
                 .log().body().and()
                 .statusCode(HttpStatus.OK.value())
                 .body("title", equalTo("Bela Vista Alterado"));
+    }
+
+    @Test
+    public void shouldFilterHotelByTitle() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setTitle("w");
+
+        given()
+                .request()
+                .header("Accept", ContentType.ANY)
+                .header("Content-type", ContentType.JSON)
+                .body(filter)
+        .when()
+        .post("/hotels/filter")
+        .then()
+                .log().body()
+                .and()
+                .statusCode(HttpStatus.OK.value())
+                .body("title", containsInAnyOrder("Bela Vista Tower"));
+
+
     }
 }
