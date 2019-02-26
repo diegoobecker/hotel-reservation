@@ -1,6 +1,8 @@
 package com.hotelreservation.resource;
 
 import com.hotelreservation.model.Hotel;
+import com.hotelreservation.repository.HotelRepository;
+import com.hotelreservation.repository.filter.HotelFilter;
 import com.hotelreservation.service.HotelService;
 import com.hotelreservation.service.exception.HotelNotFoundException;
 import com.hotelreservation.service.exception.UniquenessCnpjException;
@@ -17,6 +19,9 @@ public class HotelResource {
 
     @Autowired
     private HotelService hotelService;
+
+    @Autowired
+    private HotelRepository hotelRepository;
 
     @GetMapping("/{cnpj}")
     public ResponseEntity<Hotel> getByCnpj(@PathVariable("cnpj") String cnpj) throws HotelNotFoundException {
@@ -39,6 +44,13 @@ public class HotelResource {
         final Hotel newHotel = hotelService.save(hotel);
 
         return new ResponseEntity<>(newHotel, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<Hotel>> filterHotel(@RequestBody HotelFilter filter) {
+        final List<Hotel> hotels = hotelRepository.filter(filter);
+
+        return new ResponseEntity<>(hotels, HttpStatus.OK);
     }
 
     @DeleteMapping("/{code}")

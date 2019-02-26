@@ -1,6 +1,7 @@
 package com.hotelreservation.repository;
 
 import com.hotelreservation.model.Hotel;
+import com.hotelreservation.repository.filter.HotelFilter;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,5 +39,46 @@ public class HotelRepositoryTest {
         Optional<Hotel> optional = hotelRepository.findByCnpj(CNPJ_INVALIDO);
 
         Assertions.assertThat(optional.isPresent()).isFalse();
+    }
+
+    @Test
+    public void shouldFilterHotelByTitle() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setTitle("w");
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldFilterHotelByCnpj() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setCnpj("14");
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void shouldFilterHotelByCnpjAndTitle() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setTitle("w");
+        filter.setCnpj("14");
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldFilterHotelByRating() throws Exception {
+        HotelFilter filter = new HotelFilter();
+        filter.setRating(3);
+
+        List<Hotel> hotels = hotelRepository.filter(filter);
+
+        Assertions.assertThat(hotels.size()).isEqualTo(2);
     }
 }
