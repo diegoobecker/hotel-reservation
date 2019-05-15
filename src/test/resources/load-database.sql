@@ -1,5 +1,7 @@
-INSERT INTO hotel (title, address, cnpj, description, priceNWK, priceNWE, priceAWK, priceAWE, rating, blackoutI, blackoutE) VALUES ('Bela Vista', 'Porto Alegre', '90825687000197', '', 0, 0, 0, 0, 3, '2018-08-21', current_date);
-INSERT INTO hotel (title, address, cnpj, description, priceNWK, priceNWE, priceAWK, priceAWE, rating, blackoutI, blackoutE) VALUES ('Bela Praia', 'Florianópolis', '57689757000151', '', 0, 0, 0, 0, 4, '2018-08-21', current_date);
-INSERT INTO hotel (title, address, cnpj, description, priceNWK, priceNWE, priceAWK, priceAWE, rating, blackoutI, blackoutE) VALUES ('Verde Bela', 'Curitiba', '30965242000180', '', 0, 0, 0, 0, 5, '2018-08-20', current_date);
-INSERT INTO hotel (title, address, cnpj, description, priceNWK, priceNWE, priceAWK, priceAWE, rating, blackoutI, blackoutE) VALUES ('Bela Vista Tower', 'São Paulo', '61586557000140', '', 0, 0, 0, 0, 3, '2018-08-21', current_date);
-INSERT INTO hotel (title, address, cnpj, description, priceNWK, priceNWE, priceAWK, priceAWE, rating, blackoutI, blackoutE) VALUES ('Vista Bela', 'Rio de Janeiro', '91780927000147', '', 0, 0, 0, 0, 5, '2018-08-21', current_date);
+
+
+INSERT INTO hotel (title, address, cnpj, description, priceWeekdaysRegular, priceWeekdaysRewards, priceWeekendRegular, priceWeekendRewards, rating, blackoutI, blackoutE) VALUES ('Bela Vista', 'Porto Alegre', '90825687000197', '', 0, 0, 0, 0, 3, '2018-08-21', current_date);
+INSERT INTO hotel (title, address, cnpj, description, priceWeekdaysRegular, priceWeekdaysRewards, priceWeekendRegular, priceWeekendRewards, rating, blackoutI, blackoutE) VALUES ('Bela Praia', 'Florianópolis', '57689757000151', '', 0, 0, 0, 0, 4, '2018-08-21', current_date);
+INSERT INTO hotel (title, address, cnpj, description, priceWeekdaysRegular, priceWeekdaysRewards, priceWeekendRegular, priceWeekendRewards, rating, blackoutI, blackoutE) VALUES ('Verde Bela', 'Curitiba', '30965242000180', '', 0, 0, 0, 0, 5, '2018-08-20', current_date);
+INSERT INTO hotel (title, address, cnpj, description, priceWeekdaysRegular, priceWeekdaysRewards, priceWeekendRegular, priceWeekendRewards, rating, blackoutI, blackoutE) VALUES ('Bela Vista Tower', 'São Paulo', '61586557000140', '', 0, 0, 0, 0, 3, '2018-08-21', current_date);
+INSERT INTO hotel (title, address, cnpj, description, priceWeekdaysRegular, priceWeekdaysRewards, priceWeekendRegular, priceWeekendRewards, rating, blackoutI, blackoutE) VALUES ('Vista Bela', 'Rio de Janeiro', '91780927000147', '', 0, 0, 0, 0, 5, '2018-08-21', current_date);

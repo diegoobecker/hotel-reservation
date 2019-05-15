@@ -17,10 +17,10 @@ public class Hotel {
     private String title;
     private String address;
     private String description;
-    private Double priceNWK;
-    private Double priceNWE;
-    private Double priceAWK;
-    private Double priceAWE;
+    private Double priceWeekdaysRegular;
+    private Double priceWeekdaysRewards;
+    private Double priceWeekendRegular;
+    private Double priceWeekendRewards;
     private int rating;
     private Calendar blackoutI;
     private Calendar blackoutE;
@@ -65,36 +65,36 @@ public class Hotel {
         this.description = description;
     }
 
-    public Double getPriceNWK() {
-        return priceNWK;
+    public Double getPriceWeekdaysRegular() {
+        return priceWeekdaysRegular;
     }
 
-    public void setPriceNWK(Double priceNWK) {
-        this.priceNWK = priceNWK;
+    public void setPriceWeekdaysRegular(Double priceWeekdaysRegular) {
+        this.priceWeekdaysRegular = priceWeekdaysRegular;
     }
 
-    public Double getPriceNWE() {
-        return priceNWE;
+    public Double getPriceWeekdaysRewards() {
+        return priceWeekdaysRewards;
     }
 
-    public void setPriceNWE(Double priceNWE) {
-        this.priceNWE = priceNWE;
+    public void setPriceWeekdaysRewards(Double priceWeekdaysRewards) {
+        this.priceWeekdaysRewards = priceWeekdaysRewards;
     }
 
-    public Double getPriceAWK() {
-        return priceAWK;
+    public Double getPriceWeekendRegular() {
+        return priceWeekendRegular;
     }
 
-    public void setPriceAWK(Double priceAWK) {
-        this.priceAWK = priceAWK;
+    public void setPriceWeekendRegular(Double priceWeekendRegular) {
+        this.priceWeekendRegular = priceWeekendRegular;
     }
 
-    public Double getPriceAWE() {
-        return priceAWE;
+    public Double getPriceWeekendRewards() {
+        return priceWeekendRewards;
     }
 
-    public void setPriceAWE(Double priceAWE) {
-        this.priceAWE = priceAWE;
+    public void setPriceWeekendRewards(Double priceWeekendRewards) {
+        this.priceWeekendRewards = priceWeekendRewards;
     }
 
     public int getRating() {
