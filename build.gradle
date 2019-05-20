@@ -28,10 +28,11 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.flywaydb:flyway-core')
+	runtime('org.hibernate:hibernate-core:5.4.2.Final')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('mysql:mysql-connector-java')
-	runtime('org.hsqldb:hsqldb')
-    runtime('org.postgresql:postgresql')
+//	runtime('org.hsqldb:hsqldb')
+//    runtime('org.postgresql:postgresql')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
